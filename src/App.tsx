@@ -1,9 +1,10 @@
 import { Accueil } from './Accueil';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { Conseils } from './Conseils';
 import { Tutoriels } from './Tutoriels';
+import ThemeContext from './ThemeContext';
 
 const navigation = [
   { name: 'Accueil', href: '/caro-crochet/' },
@@ -11,52 +12,82 @@ const navigation = [
   { name: 'Conseils', href: '/caro-crochet/conseils' },
 ]
 
+function getInitialTheme() {
+  if (typeof window !== "undefined") {
+    if (localStorage.theme === "dark") return "dark";
+    if (localStorage.theme === "light") return "light";
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) return "dark";
+  }
+  return "light";
+}
+
 function App() {
   const [open, setOpen] = useState(false);
+  const [themeClass, setThemeClass] = useState(getInitialTheme());
+  const isDarkMode = themeClass === "dark";
+
+  useEffect(() => {
+    if (themeClass === "dark") {
+      document.documentElement.classList.add("dark");
+      localStorage.theme = "dark";
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.theme = "light";
+    }
+  }, [themeClass]);
+
+  const onHandleClick = () => {
+    setThemeClass(isDarkMode ? "light" : "dark");
+  };
 
   return (
     <>
       <BrowserRouter>
-        <nav className="bg-gray-800">
-          <div className="flex items-center px-6 relative h-16 justify-between">
+        <nav className="bg-pink-300 dark:bg-red-900 px-6">
+          <div className="flex items-center relative h-16 justify-between">
 
             {/* Logo et nom du site */}
             <div className="flex items-center">
-              <img src={process.env.PUBLIC_URL + "/logo.png"} alt="Logo du site, une pelote de laine orange avec un C et un crochet blancs" width="50" className="h-10 w-auto" />
-              <span className="text-2xl font-bold text-white ml-3">Caro Crochet</span>
+              <img src={process.env.PUBLIC_URL + "/logo.png"} alt="Logo du site, une pelote de laine orange avec un C et un crochet blancs" width="50" />
+              <span className="text-2xl font-bold text-black dark:text-white ml-3">Caro Crochet</span>
             </div>
 
-            {/* Contenu du menu ordinateur */}
-            <div className="hidden sm:ml-6 sm:block space-x-4">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className="rounded-md px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-700">
-                  {item.name}
-                </Link>
-              ))}
-            </div>
+            <div className="flex items-center space-x-4">
 
-            {/* Icône burger pour mobile */}
-            <div className="absolute inset-y-0 right-3 flex items-center sm:hidden">
-              <button className="rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white" onClick={() => setOpen((prev) => !prev)}>
-                <svg className="block size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              </button>
+              {/* Icône light/dark mode */}
+              <ThemeContext.Provider value={{ themeClass, setThemeClass }}>
+                <button className={themeClass} onClick={onHandleClick}>
+                    <svg fill={isDarkMode ? "#fff" : "#000"} viewBox="0 0 32 32" transform="rotate(-45)" strokeLinecap="round" strokeLinejoin="round" width={32} height={32} className="p-1 rounded-full fill-black hover:fill-white hover:bg-pink-500 dark:hover:bg-red-700 dark:fill-white dark:hover:fill-black">
+                      <path d="M30.994 13.84l-6.241-2.361 1.076-6.586-6.299 2.203-3.409-5.736-3.409 5.736-6.299-2.203 1.076 6.586-6.241 2.361 5.057 4.354-3.263 5.821 6.672 0.084 1.242 6.556 5.166-4.224 5.166 4.224 1.242-6.556 6.672-0.084-3.263-5.821 5.057-4.354zM16.472 25.494c-4.977 0-9.012-4.035-9.012-9.012s4.035-9.012 9.012-9.012c2.328 0 4.45 0.883 6.049 2.332-0.55-0.214-1.132-0.364-1.736-0.425-0.239-0.024-0.486 0-0.731 0-3.929 0-7.099 3.17-7.099 7.099s3.17 7.099 7.099 7.099c0.9 0 1.76-0.179 2.551-0.492-1.609 1.495-3.764 2.41-6.133 2.41z" />
+                    </svg>
+                </button>
+              </ThemeContext.Provider>
+
+              {/* Contenu du menu ordinateur */}
+              <div className="hidden sm:flex">
+                {navigation.map((item) => (
+                  <Link key={item.name} to={item.href} className="rounded-md px-3 py-2 dark:text-white hover:bg-pink-500 dark:hover:bg-red-700">
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+
+              {/* Icône burger pour mobile */}
+              <div className="flex items-center sm:hidden">
+                <button className="rounded-md p-2 text-gray-400 dark:hover:bg-red-700 hover:bg-pink-500 hover:text-white" onClick={() => setOpen((prev) => !prev)}>
+                  <svg className="block size-6" fill="none" viewBox="0 0 24 24" stroke={isDarkMode ? "#fff" : "#000"} strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
 
           {/* Contenu du menu mobile */}
           {open && (
-            <div className="fixed w-full bg-gray-800 z-50 sm:hidden space-y-1 px-2 pt-2 pb-3" onMouseLeave={() => setOpen(false)}>
+            <div className="fixed w-full bg-gray-800 z-50 sm:hidden space-y-1 p-2" onMouseLeave={() => setOpen(false)}>
               {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className="block rounded-md px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-700"
-                  onClick={() => setOpen(false)}>
+                <Link key={item.name} to={item.href} className="block rounded-md p-2 text-gray-300 hover:text-white hover:bg-gray-700" onClick={() => setOpen(false)}>
                   {item.name}
                 </Link>
               ))}
