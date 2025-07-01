@@ -1,15 +1,17 @@
 {
   "files": {
-    "main.css": "/caro-crochet/static/css/main.61ec1793.css",
-    "main.js": "/caro-crochet/static/js/main.eb3f914b.js",
+    "main.css": "/caro-crochet/static/css/main.90eaed2e.css",
+    "main.js": "/caro-crochet/static/js/main.50d2d503.js",
     "static/js/453.af976c5c.chunk.js": "/caro-crochet/static/js/453.af976c5c.chunk.js",
+    "static/media/wave-vertical.svg": "/caro-crochet/static/media/wave-vertical.ff056145c56770659ebd.svg",
+    "static/media/wave.svg": "/caro-crochet/static/media/wave.d6eea334e29ec167efa7.svg",
     "index.html": "/caro-crochet/index.html",
-    "main.61ec1793.css.map": "/caro-crochet/static/css/main.61ec1793.css.map",
-    "main.eb3f914b.js.map": "/caro-crochet/static/js/main.eb3f914b.js.map",
+    "main.90eaed2e.css.map": "/caro-crochet/static/css/main.90eaed2e.css.map",
+    "main.50d2d503.js.map": "/caro-crochet/static/js/main.50d2d503.js.map",
     "453.af976c5c.chunk.js.map": "/caro-crochet/static/js/453.af976c5c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.61ec1793.css",
-    "static/js/main.eb3f914b.js"
+    "static/css/main.90eaed2e.css",
+    "static/js/main.50d2d503.js"
   ]
 }
