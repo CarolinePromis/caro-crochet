@@ -85,9 +85,9 @@ function App() {
 
           {/* Contenu du menu mobile */}
           {open && (
-            <div className="fixed w-full bg-gray-800 z-50 sm:hidden space-y-1 p-2" onMouseLeave={() => setOpen(false)}>
+            <div className="fixed w-full left-0 bg-pink-300 dark:bg-red-900 z-50 sm:hidden space-y-1 p-2" onMouseLeave={() => setOpen(false)}>
               {navigation.map((item) => (
-                <Link key={item.name} to={item.href} className="block rounded-md p-2 text-gray-300 hover:text-white hover:bg-gray-700" onClick={() => setOpen(false)}>
+                <Link key={item.name} to={item.href} className="block rounded-md p-2 dark:text-white hover:bg-pink-500 dark:hover:bg-red-700" onClick={() => setOpen(false)}>
                   {item.name}
                 </Link>
               ))}
