@@ -18,8 +18,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
-  --s: 100px; /* taille */
+
+  --s: 100px;
+  /* taille */
   --c1: #ffe9cd;
   --c2: #fcbc74;
 
@@ -35,7 +36,8 @@ body {
       var(--c2) 0 240deg,
       var(--c1) 0 300deg,
       var(--c2) 0),
-    linear-gradient(-150deg, var(--_l)) #eb9854; /* couleur n°3 */
+    linear-gradient(-150deg, var(--_l)) #eb9854;
+  /* couleur n°3 */
   ;
   background-size: calc(0.866 * var(--s)) var(--s);
 }
@@ -43,7 +45,7 @@ body {
 .dark body {
   --c1: #ffad41;
   --c2: #c26f10;
-  
+
   background: var(--_g), var(--_g) 0 calc(var(--s) / 2),
     conic-gradient(from 180deg at 75%, var(--c2) 60deg, #0000 0),
     conic-gradient(from 60deg at 75% 75%, var(--c1) 0 60deg, #0000 0),
@@ -65,12 +67,18 @@ code {
 h1 {
   font-size: 45px;
   font-weight: bold;
-  color:#164e63;
+  color: #164e63;
   padding: 10px;
 }
 
 .dark h1 {
   color: #69e8f9;
+}
+
+h2 {
+  font-size: 25px;
+  font-weight: bold;
+  padding: 15px;
 }
 
 h3 {
@@ -81,17 +89,56 @@ h3 {
 .redirect-button {
   margin: 10px;
   padding: 10px;
-  background-color:oklch(82.8% 0.111 230.318);
+  background-color: oklch(82.8% 0.111 230.318);
   border-radius: 15px;
   font-weight: bold;
 }
 
-.redirect-button:hover, .dark .redirect-button:hover {
+.redirect-button:hover,
+.dark .redirect-button:hover {
   background-color: #0ea5e9;
 }
 
 .dark .redirect-button {
   background-color: #065782;
+}
+
+@keyframes wave-horizontal {
+  from {
+    background-position-x: 0%;
+  }
+  to {
+    background-position-x: 100%;
+  }
+}
+
+@keyframes wave-vertical {
+  from {
+    background-position-y: 0%;
+  }
+  to {
+    background-position-y: 100%;
+  }
+}
+
+.animate-wave-horizontal {
+  animation: wave-horizontal 15s linear infinite;
+}
+
+.animate-wave-vertical {
+  animation: wave-vertical 15s linear infinite;
+}
+
+.wave-horizontal {
+  background-image: url('../public/wave.svg');
+  background-repeat: repeat-x;
+  background-size: contain;
+}
+
+.wave-vertical {
+  background-image: url('../public/wave-vertical.svg');
+  background-repeat: repeat-y;
+  background-size: contain;
 }
 
 @layer components {

@@ -6,7 +6,7 @@ import { Conseils } from './Conseils';
 import { Tutoriels } from './Tutoriels';
 import ThemeContext from './ThemeContext';
 
-const navigation = [
+const pages = [
   { name: 'Accueil', href: '/caro-crochet/' },
   { name: 'Tutoriels', href: '/caro-crochet/tutoriels' },
   { name: 'Conseils', href: '/caro-crochet/conseils' },
@@ -64,7 +64,7 @@ function App() {
 
               {/* Contenu du menu ordinateur */}
               <div className="hidden sm:flex">
-                {navigation.map((item) => (
+                {pages.map((item) => (
                   <Link key={item.name} to={item.href} className="rounded-md px-3 py-2 dark:text-white hover:bg-pink-500 dark:hover:bg-red-700">
                     {item.name}
                   </Link>
@@ -85,7 +85,7 @@ function App() {
           {/* Contenu du menu mobile */}
           {open && (
             <div className="fixed w-full left-0 bg-pink-300 dark:bg-red-900 z-50 sm:hidden space-y-1 p-2" onMouseLeave={() => setOpen(false)}>
-              {navigation.map((item) => (
+              {pages.map((item) => (
                 <Link key={item.name} to={item.href} className="block rounded-md p-2 hover:bg-pink-500 dark:hover:bg-red-700" onClick={() => setOpen(false)}>
                   {item.name}
                 </Link>
@@ -109,7 +109,7 @@ function App() {
           {/* Texte explicatif */}
           <p className="my-3 md:max-w-md text-center">
             <b>Pour les débutants comme pour les plus talentueux</b><br />
-            J'ai commencé le crochet en autodidacte il y a quelque temps maintenant et j'adore créer mes propres modèles. C'est pour cela que j'ai pensé à créer ce site, où je publie mes modèles !
+            J'ai commencé le crochet en autodidacte il y a quelque temps maintenant et j'adore créer de nouvelles choses. C'est pour cela que j'ai pensé à créer ce site, où je publie mes propres modèles !
           </p>
 
           {/* Logos */}
