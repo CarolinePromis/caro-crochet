@@ -50,12 +50,13 @@ function App() {
 
           {/* Contenu du menu mobile */}
           {open && (
-            <div className="sm:hidden space-y-1 px-2 pt-2 pb-3" onMouseLeave={() => setOpen(false)}>
+            <div className="fixed w-full bg-gray-800 z-50 sm:hidden space-y-1 px-2 pt-2 pb-3" onMouseLeave={() => setOpen(false)}>
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   to={item.href}
-                  className="block rounded-md px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-700">
+                  className="block rounded-md px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-700"
+                  onClick={() => setOpen(false)}>
                   {item.name}
                 </Link>
               ))}
@@ -73,7 +74,7 @@ function App() {
         </main>
       </BrowserRouter>
 
-      <footer className="bg-gray-900 text-white relative overflow-hidden z-0">
+      <footer className="bg-gray-900 text-white relative overflow-hidden">
         <div className="relative mx-auto p-5 flex space-x-10 flex-col md:flex-row justify-evenly items-center">
           {/* Texte explicatif */}
           <p className="text-gray-300 my-3 md:max-w-md text-center leading-relaxed">
