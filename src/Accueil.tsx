@@ -13,17 +13,17 @@ export function Accueil() {
             {/* parallaxe avec des pelotes OU modèles 3D de pelotes qui tournent en fond, à voir */}
 
             {/* Dernières publications */}
-            <div className="bg-teal-400 dark:bg-teal-600">
+            <div className="bg-teal-400/80 dark:bg-teal-600/80">
                 <h2>Dernières publications</h2>
             </div>
             <hr className="border-red-950" />
 
             {/* Rubriques */}
-            <div className="bg-purple-400 dark:bg-purple-600">
+            <div className="bg-purple-400/80 dark:bg-purple-600/80">
                 <h2>Rubriques</h2>
 
                 <div className="flex text-center flex-col sm:flex-row items-center">
-                    <div className="relative w-1/2 bg-orange-300 p-6 m-5">
+                    <div className="relative w-1/2 bg-yellow-300 dark:bg-yellow-500 p-6 m-5">
                         <h2 className="text-xl font-bold">Conseils</h2>
                         <p>Infos pratiques pour faire du crochet</p><br />
                         <Link to="/caro-crochet/conseils" className="redirect-button">Conseils</Link>
@@ -42,7 +42,7 @@ export function Accueil() {
                     </div>
 
 
-                    <div className="relative w-1/2 bg-orange-300 p-6 m-5">
+                    <div className="relative w-1/2 bg-yellow-300 dark:bg-yellow-500 p-6 m-5">
                         <h2 className="text-xl font-bold">Tutoriels</h2>
                         <p>Quelques modèles que j'ai créés</p><br />
                         <Link to="/caro-crochet/tutoriels" className="redirect-button">Tutoriels</Link>
